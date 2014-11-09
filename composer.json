@@ -1,5 +1,5 @@
 {
-    "name": "PHP Multitask",
+    "name": "multisk",
     "description": "You can run multiple console commands in background & async mode.",
     "type": "library",
     "license": "NEW BSD",

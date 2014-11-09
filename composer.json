@@ -1,5 +1,5 @@
 {
-    "name": "multisk",
+    "name": "php-multisk",
     "description": "You can run multiple console commands in background & async mode.",
     "type": "library",
     "license": "NEW BSD",
@@ -14,21 +14,27 @@
     ],
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/pigochu/php-multitask.git"
+            "type": "package",
+            "package": {
+                "name": "php-multitask/multitask",
+                "version": "dev",
+                "dist": {
+                    "url": "https://github.com/pigochu/php-multitask/archive/master.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "classmap": ["src/"]
+                }
+            }
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "multitask\\": "src/"
-        }
-    },
     "support": {
         "issues": "https://github.com/pigochu/php-multitask/issues",
         "wiki": "https://github.com/pigochu/php-multitask/wiki",
         "source": "https://github.com/pigochu/php-multitask"
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "php-multitask/multitask" : "dev"
     }
 }

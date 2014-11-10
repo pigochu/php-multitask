@@ -217,8 +217,9 @@ class CommandTask {
      * @see multitask\Event
      */
     public function on($event, $callback) {
-        if ($event < 1 || $event > 2) {
-            throw new Exception('First paramater must be Event::CHILD_OUTPUT_MESSAGE or Event::CHILD_OUTPUT_ERROR.');
+        
+        if (!in_array($event, array(1,2,99)) ) {
+            throw new Exception('First paramater must be Event::CHILD_OUTPUT_MESSAGE or Event::CHILD_OUTPUT_ERROR or Event::CHILD_EXIT.');
         }
         $this->_events[$event] = $callback;
     }
@@ -232,6 +233,11 @@ class CommandTask {
             $status = proc_get_status($this->_process);
 
             if (false === $status['running']) {
+                if($this->_isWindows) {
+                    $this->_selectWindows();
+                } else {
+                    $this->select(0);
+                }
                 @proc_close($this->_process);
                 $this->_process = null;
                 $this->_exitCode = $status['exitcode'];
